@@ -30,7 +30,6 @@ class MainViewController: UIViewController {
     private var collectionView: UICollectionView!
     private let searchBar = UISearchBar()
     private var SearchResults: [Result] = []
-    let imageView = MainLoadingView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
