@@ -20,6 +20,8 @@ class ImageCollectionViewCell: UICollectionViewCell {
         static let titleLabelSize: CGFloat = 18
         static let numberOfLine = 1
     }
+    
+    private var model: SearchViewModel?
 
     private let imageView: UIImageView = {
         let imageView = UIImageView()
@@ -71,11 +73,15 @@ class ImageCollectionViewCell: UICollectionViewCell {
         imageView.image = nil
         titleLabel.text = ""
         dateLabel.text = ""
+        self.model = nil
     }
 
     func configure(with viewModel: SearchViewModel) {
-        titleLabel.text = viewModel.title
-        dateLabel.text = viewModel.createDate
+        self.model = viewModel
+        
+        guard let model = self.model else { return }
+        titleLabel.text = model.title
+        dateLabel.text = model.createDate
 
         guard let url = URL(string: viewModel.thumbnailUrl!) else { return }
         imageView.sd_setImage(with: url, completed: nil)

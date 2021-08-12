@@ -119,11 +119,12 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
 
 extension MainViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        collectionView.isHidden = false
+        
         scrollToTop()
         if let text = searchBar.text {
             fetchResults(query: text)
             collectionView.reloadData()
+            collectionView.isHidden = false
         }
     }
 
@@ -133,7 +134,7 @@ extension MainViewController: UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange _: String) {
         if searchBar.text == "" {
-            SearchResults = []
+            self.SearchResults = []
             collectionView.reloadData()
             collectionView.isHidden = true
         }
@@ -143,6 +144,8 @@ extension MainViewController: UISearchBarDelegate {
         searchBar.text = nil
         searchBar.endEditing(true)
         print("Cancel button is clicked")
+        self.SearchResults = []
+        collectionView.reloadData()
         collectionView.isHidden = true
     }
 }

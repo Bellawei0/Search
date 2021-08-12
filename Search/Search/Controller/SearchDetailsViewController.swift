@@ -41,7 +41,7 @@ class SearchDetailsViewController: UIViewController {
 
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleToFill
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
     }()
